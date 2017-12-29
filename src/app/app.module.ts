@@ -33,8 +33,8 @@ import { FirebaseFirestore } from '@firebase/firestore-types';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
-    //AngularFireDatabaseModule,
+    //AngularFirestoreModule
+    AngularFireDatabaseModule,
     //AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
