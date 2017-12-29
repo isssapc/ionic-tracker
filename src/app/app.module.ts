@@ -3,50 +3,53 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from "@ionic/storage";
 
 import { MyApp } from './app.component';
 import { UsuarioProvider } from '../providers/usuario/usuario';
-//import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
 
 //firebase
 import { AngularFireModule } from 'angularfire2';
-//import { AngularFireDatabaseModule  } from 'angularfire2/database';
-import { AngularFireDatabaseModule } from "angularfire2/database";
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+
+//import { AngularFireDatabaseModule } from "angularfire2/database";
+//import { AngularFireDatabase } from 'angularfire2/database';
+//import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { firebaseConfig } from "../config/firebase.config";
 
-//mientras se corrige
-/* import { FirebaseApp } from '@firebase/app-types';
-import { FirebaseAuth } from '@firebase/auth-types';
-import { FirebaseDatabase } from '@firebase/database-types';
-import { FirebaseMessaging } from '@firebase/messaging-types';
-import { FirebaseStorage } from '@firebase/storage-types';
-import { FirebaseFirestore } from '@firebase/firestore-types';
- */
+
+//plugins
+import { Geolocation } from '@ionic-native/geolocation';
+import { UbicacionProvider } from '../providers/ubicacion/ubicacion';
+
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    HomePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+
     AngularFireModule.initializeApp(firebaseConfig),
-    //AngularFirestoreModule
-    AngularFireDatabaseModule,
+    AngularFirestoreModule
+    //AngularFireDatabaseModule,
     //AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    //AngularFireDatabase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsuarioProvider
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    UsuarioProvider,
+    UbicacionProvider,
+    Geolocation
   ]
 })
-export class AppModule {}
+export class AppModule { }
